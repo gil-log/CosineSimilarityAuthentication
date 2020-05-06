@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/oil"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/maplestorybold"
+            android:layout_height="wrap_content"
+            android:text="측정 이름" />
+
+        <EditText
+            android:id="@+id/repid"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:enabled="false"
+            android:fontFamily="@font/maplestorybold"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/maplestorybold"
+            android:text="측정 회차" />
+
+        <EditText
+            android:id="@+id/repnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/maplestorybold"
+            android:layout_marginLeft="16dp"
+            android:inputType="number"
+            android:enabled="false"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/maplestorybold"
+            android:background="@color/iron"
+            android:layout_weight="1"
+            android:text="추가"
+            android:textSize="15dp"/>
+
+        <Button
+            android:id="@+id/agaian"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/maplestorybold"
+            android:background="@color/iron"
+            android:layout_weight="1"
+            android:text="측정"
+            android:textSize="15dp"/>
+
+        <Button
+            android:id="@+id/find"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/maplestorybold"
+            android:background="@color/iron"
+            android:layout_weight="1"
+            android:text="조회"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/measureresult"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+</LinearLayout>

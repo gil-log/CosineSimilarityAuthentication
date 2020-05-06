@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GyroTouch</string>
+    <string name="imgsize">80dp</string>
+
+    <string name="diatitle">GyroTouch 란?</string>
+
+    <string name="diatext">GyroTouch는 어쩌고저쩌고 설명~~</string>
+
+</resources>
