@@ -68,10 +68,9 @@ public class DBHelp extends SQLiteOpenHelper {
         Boolean ok = false;
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * FROM MEASUREBOX WHERE name='" + id + "';", null);
-        while (cursor.moveToNext()){
-            if(cursor.getInt(2) == 5){
-                ok = true;
-            }
+        cursor.moveToLast();
+        if(cursor.getInt(2) >= 5) {
+            ok = true;
         }
         return ok;
     }
@@ -325,23 +324,31 @@ public class DBHelp extends SQLiteOpenHelper {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
-        db.execSQL("INSERT INTO BALANCEBOX (name, mnum, btx, bty, bgx, bgy, bgz, bdt)  " +
-                "Values ('" + id + "', " + num + ", " + bal[0] + ", " + bal[1] + ", " + bal[2] + ", " + bal[3] + ", " + bal[4] + ", '" + bal[5] + "');");
-        db.close();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM BALANCEBOX WHERE name='" + id + "' AND mnum = '" + num + "';", null);
+        int count = cursor.getCount();
+        if(count == 0){
+            db.execSQL("INSERT INTO BALANCEBOX (name, mnum, btx, bty, bgx, bgy, bgz, bdt)  " +
+                    "Values ('" + id + "', " + num + ", " + bal[0] + ", " + bal[1] + ", " + bal[2] + ", " + bal[3] + ", " + bal[4] + ", '" + bal[5] + "');");
+            db.close();
+        }else if(count != 0){
+            db.execSQL("UPDATE BALANCEBOX SET btx = '"+ bal[0] + "', bty = '"+ bal[1] + "', bgx = '"+ bal[2] + "', bgy = '"+ bal[3] + "', bgz = '"+ bal[4] + "', bdt = '"+ bal[5] + "' WHERE name = '" + id + "' AND mnum = '" + num + "';");
+            db.close();
+        }
     }
 
     public void Validinsert(String id, double[][]bal) {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
-        Cursor cursor = db.rawQuery("SELECT * FROM MEASUREBOX WHERE name='" + id + "';", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM VALIDBOX WHERE name='" + id + "';", null);
         int count = cursor.getCount();
         if(count == 0){
             db.execSQL("INSERT INTO VALIDBOX (name, valid1min, valid1max, valid2min, valid2max, valid3min, valid3max, valid4min, valid4max)  " +
                     "Values ('" + id + "', " + bal[0][0] + ", " + bal[0][1] + ", " + bal[1][0] + ", " + bal[1][1] + ", " + bal[2][0] + ", " + bal[2][1] + ", " + bal[3][0] + ", '" + bal[3][1] + "');");
             db.close();
         }else if(count != 0){
-            db.execSQL("UPDATE VALIDBOX SET (name = '" + id + "', valid1min = '"+ bal[0][0] + "', valid1max = '"+ bal[0][1] + "', valid2min = '"+ bal[1][0] + "', valid2max = '"+ bal[1][1] + "', valid3min = '"+ bal[2][0] + "', valid3max = '"+ bal[2][1] + "', valid4min = '"+ bal[3][0] + "', valid4max = '"+ bal[3][1] + "');");
+            db.execSQL("UPDATE VALIDBOX SET valid1min = '"+ bal[0][0] + "', valid1max = '"+ bal[0][1] + "', valid2min = '"+ bal[1][0] + "', valid2max = '"+ bal[1][1] + "', valid3min = '"+ bal[2][0] + "', valid3max = '"+ bal[2][1] + "', valid4min = '"+ bal[3][0] + "', valid4max = '"+ bal[3][1] + "' WHERE name = '" + id + "';");
             db.close();
         }
     }

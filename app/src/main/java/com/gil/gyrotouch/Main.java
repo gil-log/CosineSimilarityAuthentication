@@ -33,6 +33,14 @@ public class Main extends AppCompatActivity {
             }
         });
 
+        infoB.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent info = new Intent(Main.this, Info.class);
+                startActivity(info);
+            }
+        });
+
         loginB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,16 +50,17 @@ public class Main extends AppCompatActivity {
                         Toast.makeText(Main.this, "측정횟수가 부족합니다. 측정을 진행합니다.", Toast.LENGTH_LONG).show();
                         Intent measurelessIntent = new Intent(Main.this, GyroTouch.class);
                         measurelessIntent.putExtra("id", id); /*송신*/
-                        measurelessIntent.putExtra("less",1);
+                        measurelessIntent.putExtra("less", true);
                         startActivity(measurelessIntent);
                     }
                     else if(dbhelp.Measurecount(id)>=6){
                         Intent loginIntent = new Intent(Main.this, GyroTouch.class);
                         loginIntent.putExtra("id", id); /*송신*/
-                        loginIntent.putExtra("less", 0);
+                        loginIntent.putExtra("less", false);
                         startActivity(loginIntent);
                     }
                 }
+
                 else if (!dbhelp.okid(id)){
                     Toast.makeText(Main.this, "아이디가 존재하지 않습니다.\n회원가입을 진행해주세요.", Toast.LENGTH_LONG).show();
                 }

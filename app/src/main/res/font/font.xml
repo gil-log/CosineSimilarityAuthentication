@@ -17,6 +17,11 @@
         android:fontWeight = "400"
         android:font = "@font/hellopop"/>
 
+    <font
+        android:fontStyle = "normal"
+        android:fontWeight = "400"
+        android:font = "@font/yuryeob"/>
+
 
 
 </font-family>

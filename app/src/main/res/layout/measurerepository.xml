@@ -80,6 +80,17 @@
             android:textSize="15dp"/>
 
         <Button
+            android:id="@+id/mainbtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/maplestorybold"
+            android:background="@color/iron"
+            android:layout_weight="1"
+            android:text="메인"
+            android:textSize="15dp" />
+
+        <Button
             android:id="@+id/find"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

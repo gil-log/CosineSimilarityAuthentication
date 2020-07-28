@@ -17,7 +17,6 @@ public class MeasureRepository extends AppCompatActivity {
     EditText repid, repnum;
     TextView result;
     String id;
-    int less;
     int count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,6 @@ public class MeasureRepository extends AppCompatActivity {
         Intent intent = getIntent(); /*데이터 수신*/
 
         id = intent.getExtras().getString("id");
-        less = intent.getExtras().getInt("less");
         mea[0] = intent.getExtras().getFloatArray("mea1");
         mea[1] = intent.getExtras().getFloatArray("mea2");
         mea[2] = intent.getExtras().getFloatArray("mea3");
@@ -127,7 +125,15 @@ public class MeasureRepository extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MeasureRepository.this, GyroTouch.class);
                 intent.putExtra("id", id);
-                intent.putExtra("less", less);
+                startActivity(intent);
+            }
+        });
+
+        Button mainbtn = (Button)findViewById(R.id.mainbtn);
+        mainbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MeasureRepository.this, Main.class);
                 startActivity(intent);
             }
         });

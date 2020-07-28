@@ -24,13 +24,15 @@ public class GyroTouch extends AppCompatActivity implements SensorEventListener 
     private Sensor gravitySensor;
     long dTStart, dTStop;
     String id;
-    int less;
+    boolean less;
     float[] dTF = {0, 0, 0, 0};
     float[] tX = {0, 0, 0, 0, 0};
     float[] tY = {0, 0, 0, 0, 0};
     float[] gX = {0, 0, 0, 0, 0};
     float[] gY = {0, 0, 0, 0, 0};
     float[] gZ = {0, 0, 0, 0, 0};
+
+    DBHelp db;
 
     float gx, gy, gz;
 
@@ -56,9 +58,12 @@ public class GyroTouch extends AppCompatActivity implements SensorEventListener 
 
         iv = (ImageView) findViewById(R.id.gtimageView1);
 
+        db = new DBHelp(getApplicationContext(), "GyroTouch.db", null, 1);
+
         Intent intent = getIntent(); /*데이터 수신*/
         id = intent.getExtras().getString("id");
-        less = intent.getExtras().getInt("less");
+        less = intent.getExtras().getBoolean("less");
+
         touch.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 switch(event.getAction()) {
@@ -202,60 +207,65 @@ public class GyroTouch extends AppCompatActivity implements SensorEventListener 
 
                                 AlertDialog.Builder ad = new AlertDialog.Builder(GyroTouch.this);
 
-                                ad.setTitle("측정 완료");       // 제목 설정
-                                ad.setMessage("측정값을 추가 하시겠습니까?");   // 내용 설정
-                                // 확인 버튼 설정
-                                ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();     //닫기
 
-                                        Intent intent = new Intent(GyroTouch.this, MeasureRepository.class);
-                                        intent.putExtra("id", id);
-                                        intent.putExtra("less", less);
-                                        intent.putExtra("mea1", mea[0]);
-                                        intent.putExtra("mea2", mea[1]);
-                                        intent.putExtra("mea3", mea[2]);
-                                        intent.putExtra("mea4", mea[3]);
+                                    ad.setTitle("측정 완료");       // 제목 설정
+                                    ad.setMessage("측정값을 추가 하시겠습니까?");   // 내용 설정
+                                    // 확인 버튼 설정
+                                    ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();     //닫기
 
-                                        startActivity(intent);
-
-                                        // Event
-                                    }
-                                });
-                                ad.setNeutralButton("검증", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();     //닫기
-
-                                        if(less==0) {
-                                            Intent intent = new Intent(GyroTouch.this, BeforeValid.class);
-
+                                            Intent intent = new Intent(GyroTouch.this, MeasureRepository.class);
                                             intent.putExtra("id", id);
-                                            intent.putExtra("less", less);
                                             intent.putExtra("mea1", mea[0]);
                                             intent.putExtra("mea2", mea[1]);
                                             intent.putExtra("mea3", mea[2]);
                                             intent.putExtra("mea4", mea[3]);
 
                                             startActivity(intent);
-                                        }
-                                        else if (less==1){
-                                            Toast.makeText(GyroTouch.this, "측정값이 부족합니다.\n측정값을 추가해 주세요.", Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                });
-                                ad.setNegativeButton("다시", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();     //닫기
 
-                                        count = 0;
-                                        iv.setVisibility(View.INVISIBLE);
-                                        // Event
-                                    }
-                                });
-                                ad.show();
+                                            // Event
+                                        }
+                                    });
+
+
+                                    ad.setNeutralButton("검증", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();     //닫기
+
+                                            if(db.isitok(id)) {
+                                                Intent intent = new Intent(GyroTouch.this, BeforeValid.class);
+
+                                                intent.putExtra("id", id);
+                                                intent.putExtra("mea1", mea[0]);
+                                                intent.putExtra("mea2", mea[1]);
+                                                intent.putExtra("mea3", mea[2]);
+                                                intent.putExtra("mea4", mea[3]);
+
+                                                startActivity(intent);
+                                            }
+                                            else if (!db.isitok(id)){
+                                                Toast.makeText(GyroTouch.this, "측정값이 부족합니다.\n측정값을 추가해 주세요.", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    });
+
+                                    ad.setNegativeButton("다시", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();     //닫기
+
+                                            count = 0;
+                                            iv.setVisibility(View.INVISIBLE);
+                                            // Event
+                                        }
+                                    });
+                                    ad.show();
+
+
+
                                 break;
                             case 6:
                                 count = 0;
