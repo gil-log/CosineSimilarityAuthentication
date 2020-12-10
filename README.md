@@ -8,7 +8,7 @@
 
 스마트폰을 일정 간격으로 회전 터치하여 자신을 인증하는 안드로이드 프로젝트
 
-[[KCI 등재 논문] 코사인 유사도 측정을 통한 행위 기반 인증](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002619181)연구 논문 데이터 수집용 프로젝트
+[[KCI 등재 논문] 코사인 유사도 측정을 통한 행위 기반 인증](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002619181) 논문 연구 데이터 수집용 프로젝트
 
 - 한국인터넷방송통신학회 -
 KCI 논문 등재
