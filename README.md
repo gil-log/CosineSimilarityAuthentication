@@ -1,4 +1,3 @@
-
 # Gyro Touch
 
 ## 🖋 코사인 유사도 측정 사용자 행위기반 인증 Android Project ♟
