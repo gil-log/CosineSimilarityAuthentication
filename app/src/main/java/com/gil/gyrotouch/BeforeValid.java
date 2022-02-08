@@ -22,7 +22,7 @@ public class BeforeValid extends AppCompatActivity {
         final EditText bfvalid = (EditText) findViewById(R.id.bfvalid);
         Button bfvalidgo = (Button) findViewById(R.id.bfvalidgo);
 
-        Intent intent = getIntent(); /*데이터 수신*/
+        Intent intent = getIntent();
 
         id = intent.getExtras().getString("id");
         less = intent.getExtras().getInt("less");
@@ -40,7 +40,7 @@ public class BeforeValid extends AppCompatActivity {
 
                 Intent iintent = new Intent(BeforeValid.this, Valid.class);
 
-                iintent.putExtra("id", idrep); /*송신*/
+                iintent.putExtra("id", idrep);
                 iintent.putExtra("less", less);
                 iintent.putExtra("mea1", mea[0]);
                 iintent.putExtra("mea2", mea[1]);
