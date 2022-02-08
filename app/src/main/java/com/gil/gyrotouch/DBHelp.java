@@ -54,10 +54,8 @@ public class DBHelp extends SQLiteOpenHelper {
     }
 
     public Boolean isitok(String id) {
-        // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
         Boolean ok = false;
-        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * FROM MEASUREBOX WHERE name='" + id + "';", null);
         cursor.moveToLast();
         if(cursor.getInt(2) >= 5) {
@@ -67,10 +65,8 @@ public class DBHelp extends SQLiteOpenHelper {
     }
 
     public Boolean okid(String id) {
-        // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
         Boolean ok = false;
-        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * FROM MEASUREBOX WHERE name='" + id + "';", null);
         int count = cursor.getCount();
         if(count != 0){
@@ -97,7 +93,6 @@ public class DBHelp extends SQLiteOpenHelper {
     }
 
     public float[] makeBalance(String id, int mnum) {
-        // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
         float []balance = {0, 0, 0, 0, 0, 0};
         float btx = 0;
@@ -108,7 +103,6 @@ public class DBHelp extends SQLiteOpenHelper {
         float bdt = 0;
         float count = 0;
 
-        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * FROM MEASUREBOX WHERE name = '" + id + "' AND mnum = '" + mnum + "';", null);
 
         if(cursor.getCount()!=0) {
@@ -142,7 +136,6 @@ public class DBHelp extends SQLiteOpenHelper {
     }
 
     public String MeasureResult(String id) {
-        // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
         String measureresult = "";
 
