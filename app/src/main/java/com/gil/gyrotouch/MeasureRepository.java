@@ -47,6 +47,7 @@ public class MeasureRepository extends AppCompatActivity {
         Button addbtn = (Button)findViewById(R.id.add);
 
         addbtn.setOnClickListener(new View.OnClickListener() {
+            
             @Override
             public void onClick(View v) {
 
