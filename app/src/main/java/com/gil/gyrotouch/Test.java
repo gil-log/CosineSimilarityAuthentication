@@ -90,8 +90,5 @@ public class Test extends AppCompatActivity {
                 ad.show();
             }
         });
-
-
-
     }
 }
