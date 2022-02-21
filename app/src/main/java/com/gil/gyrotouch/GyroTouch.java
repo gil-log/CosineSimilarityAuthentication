@@ -75,7 +75,6 @@ public class GyroTouch extends AppCompatActivity implements SensorEventListener 
                         iv.setVisibility(View.VISIBLE);
                         iv.setX(tx-120);
                         iv.setY(ty-120);
-                        // 이미지 뷰의 위치를 옮기기
 
                         count++;
 
