@@ -25,13 +25,12 @@ public class MeasureRepository extends AppCompatActivity {
 
         final DBHelp dbHelper2 = new DBHelp(getApplicationContext(), "GyroTouch.db", null, 1);
 
-        // 테이블에 있는 모든 데이터 출력
         result = (TextView) findViewById(R.id.measureresult);
 
         repid = (EditText) findViewById(R.id.repid);
         repnum = (EditText) findViewById(R.id.repnum);
 
-        Intent intent = getIntent(); /*데이터 수신*/
+        Intent intent = getIntent();
 
         id = intent.getExtras().getString("id");
         mea[0] = intent.getExtras().getFloatArray("mea1");
