@@ -43,11 +43,6 @@ public class Test extends AppCompatActivity {
 
 
                 startActivity(intent);
-
-
-
-
-
             }
         });
 
