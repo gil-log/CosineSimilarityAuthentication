@@ -228,7 +228,6 @@ public class GyroTouch extends AppCompatActivity implements SensorEventListener 
                                         }
                                     });
 
-
                                     ad.setNeutralButton("검증", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -262,8 +261,6 @@ public class GyroTouch extends AppCompatActivity implements SensorEventListener 
                                         }
                                     });
                                     ad.show();
-
-
 
                                 break;
                             case 6:
