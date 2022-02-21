@@ -24,7 +24,7 @@ public class Valid extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.valid);
-        Intent intent = getIntent(); /*데이터 수신*/
+        Intent intent = getIntent();
 
         final String testid = intent.getExtras().getString("id");
 
@@ -134,9 +134,6 @@ public class Valid extends AppCompatActivity {
             }
         );
                 ad.show();
-                        // Event
-
-
                     }
                 });
 
