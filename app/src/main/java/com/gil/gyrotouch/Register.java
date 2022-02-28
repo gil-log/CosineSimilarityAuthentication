@@ -44,7 +44,6 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
-
         cancelB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -52,6 +51,5 @@ public class Register extends AppCompatActivity {
                 startActivity(cancelIntent);
             }
         });
-
     }
 }
