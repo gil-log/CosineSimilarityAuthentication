@@ -16,15 +16,11 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
-
         dbhelp = new DBHelp(getApplicationContext(), "GyroTouch.db", null, 1);
-
         idedit = (EditText)findViewById(R.id.idT);
-
         Button regB = (Button) findViewById(R.id.regB);
         Button infoB = (Button) findViewById(R.id.infoB);
         Button loginB = (Button) findViewById(R.id.loginB);
-
         regB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -32,7 +28,6 @@ public class Main extends AppCompatActivity {
                 startActivity(register);
             }
         });
-
         infoB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -40,7 +35,6 @@ public class Main extends AppCompatActivity {
                 startActivity(info);
             }
         });
-
         loginB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +54,6 @@ public class Main extends AppCompatActivity {
                         startActivity(loginIntent);
                     }
                 }
-
                 else if (!dbhelp.okid(id)){
                     Toast.makeText(Main.this, "아이디가 존재하지 않습니다.\n회원가입을 진행해주세요.", Toast.LENGTH_LONG).show();
                 }
