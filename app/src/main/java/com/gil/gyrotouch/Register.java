@@ -33,17 +33,19 @@ public class Register extends AppCompatActivity {
                 String id = idedit.getText().toString();
 
                 if (!dbhelp.okid(id)){
-                    Toast.makeText(Register.this, "사용 가능한 아이디 입니다.\n측정을 진행합니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Register.this, "사용 가능한 아이디 입니다.\n 측정을 진행합니다.", Toast.LENGTH_LONG).show();
                     Intent measurelessIntent = new Intent(Register.this, GyroTouch.class);
                     measurelessIntent.putExtra("id", id);
                     measurelessIntent.putExtra("less",1);
                     startActivity(measurelessIntent);
                 }
                 else if(dbhelp.okid(id)){
-                    Toast.makeText(Register.this, "이미 존재하는 아이디 입니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Register.this, "이미 존재하는 아이디입니다.", Toast.LENGTH_LONG).show();
                 }
             }
+           
         });
+        
         cancelB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
